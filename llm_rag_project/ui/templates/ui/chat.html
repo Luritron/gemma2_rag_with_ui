@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Model</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Noto Sans", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        header {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 10px 15px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        button {
+            padding: 10px 15px; /* Сбалансированная высота и ширина */
+            border: none;
+            background-color: #6200ea; /* Основной цвет кнопки */
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem; /* Размер текста */
+            transition: background-color 0.3s, transform 0.2s; /* Анимация */
+        }
+        button:hover {
+            background-color: #3700b3; /* Цвет при наведении */
+            transform: scale(1.05); /* Легкое увеличение кнопки */
+        }
+        button:active {
+            background-color: #24006b; /* Цвет при нажатии */
+            transform: scale(0.95); /* Уменьшение кнопки при клике */
+        }
+        /* Кнопка выбора файлов */
+        input[type="file"] {
+            padding: 5px;
+            font-size: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        .dialog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 30%;
+            max-height: 750px; /* Ограничение высоты списка диалогов */
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            overflow: hidden;
+        }
+        .dialog-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto; /* Прокрутка для списка диалогов */
+            flex-grow: 1; /* Занимает оставшееся пространство */
+        }
+        .dialog-list li {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .dialog-list li:hover {
+            background-color: #e0e0e0;
+        }
+        .upload-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center; /* Центрируем содержимое */
+        }
+        .upload-container h3 {
+            margin: 0 0 10px;
+        }
+        .upload-container form {
+            display: flex;
+            flex-direction: column; /* Ставим элементы в колонку */
+            align-items: center; /* Центрируем элементы по горизонтали */
+            gap: 10px; /* Добавляем отступы между элементами */
+        }
+        .upload-container input[type="file"] {
+            padding: 5px;
+            font-size: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-container button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #03dac6;
+            color: #000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .upload-container button:hover {
+            background-color: #018786;
+            transform: scale(1.05);
+        }
+        .upload-container button:active {
+            background-color: #01695f;
+            transform: scale(0.95);
+        }
+        .chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 160px); /* Высота окна браузера минус высота заголовка и отступы */
+            gap: 10px;
+        }
+        .chat-window {
+            flex: 1;
+            max-height: 100%; /* Ограничение высоты */
+            overflow-y: auto; /* Прокрутка */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .chat-window .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .chat-window .message.user {
+            background-color: #e3f2fd;
+            align-self: flex-end;
+        }
+        .chat-window .message.model {
+            background-color: #ede7f6;
+            align-self: flex-start;
+        }
+        .chat-input form {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #6200ea;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .chat-input button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chat with the Model</h1>
+    </header>
+    <div class="container">
+        <div class="main">
+            <div class="dialog-list">
+                <h3>Dialogs</h3>
+                <ul id="dialog-list-container"></ul>
+                <button id="new-dialog-btn">Start New Dialog</button>
+                <!-- Контейнер для Upload Files -->
+                <div class="upload-container">
+                    <h3>Upload Files</h3>
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <input type="file" id="file-input" multiple />
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="chat-window" id="chat-window"></div>
+                <div class="chat-input">
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="Type your question here..." required />
+                        <button type="submit" id="send-button">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const chatWindow = document.getElementById('chat-window');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const dialogListContainer = document.getElementById('dialog-list-container');
+        const newDialogBtn = document.getElementById('new-dialog-btn');
+        let currentDialogId = null;
+
+        // Загрузка списка диалогов
+        async function loadDialogs() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/dialogs', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    dialogListContainer.innerHTML = '';
+                    const uniqueDialogs = [...new Set(data.dialogs)]; // Убираем дубли
+                    uniqueDialogs.forEach(dialogId => {
+                        const li = document.createElement('li');
+                        li.textContent = dialogId;
+                        li.addEventListener('click', () => loadDialogMessages(dialogId));
+                        dialogListContainer.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load dialogs:', error);
+            }
+        }
+
+        // Загрузка сообщений диалога
+        async function loadDialogMessages(dialogId) {
+            try {
+                currentDialogId = dialogId;
+                const response = await fetch(`http://127.0.0.1:8000/api/dialogs/${dialogId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    chatWindow.innerHTML = '';
+                    data.messages.forEach(message => {
+                        addMessage(message.content, message.role);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load dialog messages:', error);
+            }
+        }
+
+        // Начало нового диалога
+        newDialogBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/dialogs/new', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    currentDialogId = data.dialog_id;
+                    chatWindow.innerHTML = ''; // Очистка окна чата
+                    loadDialogs(); // Обновление списка диалогов
+                }
+            } catch (error) {
+                console.error('Failed to start a new dialog:', error);
+            }
+        });
+
+        // Инициализация
+        loadDialogs();
+
+        // Функция для добавления сообщения в окно чата
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = content; // Используем innerHTML для отображения HTML
+            // messageDiv.textContent = content;
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Скроллим вниз
+        }
+
+        // Обработка отправки формы
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Предотвращаем перезагрузку страницы
+            const question = userInput.value.trim();
+            if (!question || !currentDialogId) {
+                alert('Please select or start a dialog first.');
+                return;
+            }
+
+            addMessage(question, 'user'); // Отображаем сообщение пользователя в интерфейсе
+            userInput.value = ''; // Очищаем поле ввода
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question, dialog_id: currentDialogId }),
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    addMessage(data.answer, 'model'); // Отображаем ответ модели в интерфейсе
+                } else {
+                    addMessage('Error: Could not get a response from the model.', 'model');
+                }
+            } catch (error) {
+                addMessage('Error: Failed to connect to the server.', 'model');
+            }
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const files = document.getElementById('file-input').files;
+            if (!files.length || !currentDialogId) {
+                alert('Please select files and a dialog first.');
+                return;
+            }
+            const formData = new FormData();
+            for (const file of files) {
+                formData.append('files', file);
+            }
+            formData.append('dialog_id', currentDialogId);
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/upload_files', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (response.ok) {
+                    alert('Files uploaded successfully! Wait for indexing (check Celery worker)');
+                } else {
+                    alert('Failed to upload files.');
+                }
+            } catch (error) {
+                console.error('Error uploading files:', error);
+            }
+        });
+    </script>
+</body>
+</html>
