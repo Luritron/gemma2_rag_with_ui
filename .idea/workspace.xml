@@ -5,47 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e775b70-c8c8-4463-9488-c4f7a52a0420" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/management/commands/index_documents.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/migrations/0002_dialoghistory_dialog_id.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/tasks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/agent/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/celery.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/txt_files/b8674daf-a10a-441c-b570-bfc9089acd27/English (British).txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/txt_files/b8674daf-a10a-441c-b570-bfc9089acd27/English (British)_Je2Fgi2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/txt_files/b8674daf-a10a-441c-b570-bfc9089acd27/English (British)_tXyNqpc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/base/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/db-hormozi/09e0908c-8f67-4c7f-8392-5987caecfed2/chroma.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/templates/ui/chat.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/llm_rag_project/ui/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/agent/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/agent/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/agent/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/agent/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/agent/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/agent/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/agent/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/agent/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/base/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/base/celery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/base/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/base/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/ui/templates/ui/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/ui/templates/ui/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_rag_project/ui/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_rag_project/ui/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,21 +34,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "H:/Python Projects/rag_llm/llm_rag_project/base/settings.py",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/Python Projects/rag_llm/llm_rag_project/base/settings.py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="rag_llm" type="Python.DjangoServer" factoryName="Django server">
       <module name="rag_llm" />
@@ -123,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737568442527</updated>
-      <workItem from="1737568443552" duration="1684000" />
+      <workItem from="1737568443552" duration="2478000" />
     </task>
     <servers />
   </component>

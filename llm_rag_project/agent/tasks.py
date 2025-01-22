@@ -4,7 +4,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.schema import Document
 from pathlib import Path
-import os
 
 @shared_task
 def process_uploaded_files(dialog_id, file_paths):
@@ -12,7 +11,6 @@ def process_uploaded_files(dialog_id, file_paths):
     documents = []
 
     print(f"Started processing files for dialog {dialog_id}")
-    # Обработка файлов
     for file_path in file_paths:
         file_path = Path(file_path)
         if file_path.suffix.lower() == ".pdf":
@@ -23,14 +21,12 @@ def process_uploaded_files(dialog_id, file_paths):
                 text = txt_file.read()
                 documents.append(Document(page_content=text, metadata={"source": str(file_path)}))
 
-    # Разбиение текста на чанки
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, add_start_index=True)
     texts = []
     for doc in documents:
         chunks = text_splitter.split_documents([doc])
         texts.extend(chunks)
 
-    # Сохранение в векторное хранилище
     dialog_db_path = get_chroma_db_path(dialog_id).as_posix()
     vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=dialog_db_path)
     print(f"Completed processing files for dialog {dialog_id}")
